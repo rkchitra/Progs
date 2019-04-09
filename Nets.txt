@@ -1,0 +1,58 @@
+import java.util.*;
+class Nets
+{
+    int max(int a,int b)
+    {
+        return a>b ? a:b;
+    }
+    void main()
+    {
+        int i,j,n,c[]=new int[15],net[][]=new int[15][15],res[]=new int[15],k=0;
+        System.out.print("Input number of pins: ");
+        Scanner obj=new Scanner(System.in);
+        n=obj.nextInt();
+        System.out.print("Input pin connenctions: ");
+        for(i=1;i<=n;i++)
+        c[i]=obj.nextInt();
+        for(i=1;i<=n;i++)
+        if(i<c[1])
+        net[1][i]=0;
+        else
+        net[1][i]=1;
+        
+        for(i=2;i<=n;i++)
+        {
+            for(j=1;j<=n;j++)
+            if(j<c[i])
+            net[i][j]=net[i-1][j];
+            else
+            {
+                net[i][j]=max(net[i-1][j],(net[i-1][(c[i]-1)]+1));
+            }
+        }
+        
+        for(i=1;i<=n;i++)
+        {
+            for(j=1;j<=n;j++)
+            System.out.print(net[i][j]+" ");
+            System.out.println();
+        }
+        
+        i=n;
+        j=n;
+        while(net[i][j]>0)
+        {
+            if(net[i][j]==net[i-1][j])
+            i--;
+            else
+            {
+                res[k++]=i;
+                j=c[i]-1;
+                i--;
+            }
+        }
+        System.out.print("\nMaximum Non-Crossing Subset of Nets: ");
+        for(i=(k-1);i>=0;i--)
+        System.out.print(res[i]+" ");
+    }
+}
