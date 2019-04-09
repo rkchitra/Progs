@@ -1,0 +1,261 @@
+import java.util.*;
+class Foreign_Exchange
+{
+    String curr1,curr2;
+    Foreign_Exchange()
+    {
+        main();
+        
+    }
+    void main()
+    {
+        System.out.println("This program converts Currency1 to Currency2.");
+        print();
+        System.out.print("\nINPUT:\nCurrency1: ");
+        Scanner obj=new Scanner(System.in);
+        int cur1=obj.nextInt();
+        String c1=cur(cur1);
+        if(c1.equals("invalid"))
+        {
+            
+        }
+        else
+        {
+        System.out.println("\fThis program converts Currency1 to Currency2.");
+        print();
+        System.out.print("\nINPUT:\nCurrency1: "+c1+"\nCurrency2: ");
+        int cur2=obj.nextInt();
+        String c2=cur(cur2);
+        if(c2.equals("invalid"))
+        {
+        }
+        else
+        {
+        System.out.println("\fThis program converts Currency1 to Currency2.");
+        print();
+        System.out.print("\nINPUT:\nCurrency1: "+c1+"\nCurrency2: "+c2);
+        System.out.print("\nAmount: ");
+        int amt=obj.nextInt();
+        double con1=1,con2=1;
+        if(cur1!=1)
+        {
+            con1=conv1(cur1);
+        }
+        if(cur2!=1)
+        {
+            con2=conv2(cur2);
+        }
+        
+        float con=(float)(amt*con1*con2);
+        String temp=String.valueOf(con);
+        int pos=0,l=temp.length();
+        /*for(int i=0;i<l;i++)
+        if(temp.charAt(i)=='.')
+        pos=i;
+        temp=temp.substring(0,(pos+3));
+        con=Float.valueOf(temp);*/
+        System.out.println("\nOUTPUT:\n1 "+c1+"="+con1*con2+" "+c2);
+        if(amt!=1 && con!=1)
+        System.out.println(amt+" "+c1+"(s) = "+con+" "+c2+"(s)");
+        else if(amt==1 && con!=1)
+        System.out.println("\nOUTPUT:\n"+amt+" "+c1+" = "+con+" "+c2+"(s)");
+        else if(amt!=1 && con==1)
+        System.out.println("\nOUTPUT:\n"+amt+" "+c1+"(s) = "+con+" "+c2+"");
+        
+        System.out.println("\n\t\tWould you like any more conversions? Y for yes,any other key to exit.");
+        Scanner object=new Scanner(System.in);
+        String chek=object.nextLine();
+        if(chek.equalsIgnoreCase("Y"))
+        {
+        System.out.print("\f");
+        main();
+        }
+        else
+        System.out.println("\fThank you!");
+    }
+    }
+}
+    private void print()
+    {
+        System.out.println("(1)Indian Rupee\n(2)U.S.Dollar\n(3)Euro\n(4)Yen\n(5)Pound\n(6)Franc\n(7)Canadian Dollar\n(8)Rand");
+        System.out.println("(9)Singapore Dollar\n(10)Ringgit\n(11)Dirham\n(12)Sri Lankan Rupee\n(13)Riyal\n(14)Dinar");
+        System.out.println("(15)Australian Dollar\n(16)Russian Rouble\n(17)Yuan\n(18)Hong Kong Dollar\n(19)Taiwan Dollar");
+        System.out.println("(20)South Korean Won\n(21)Brazilian Real\n(22)Argentine Peso\n(23)Thai Baht\n(24)Indonesain Rupiah");
+        System.out.println("(25)Turkish Lira");
+    }
+    private String cur(int a)
+    {
+        String name=" ";
+        switch(a)
+        {
+            case 1:name="Indian Rupee";
+            break;
+            case 2:name="U.S.Dollar";
+            break;
+            case 3:name="Euro";
+            break;
+            case 4:name="Yen";
+            break;
+            case 5:name="Pound";
+            break;
+            case 6:name="Franc";
+            break;
+            case 7:name="Canadian Dollar";
+            break;
+            case 8:name="Rand";
+            break;
+            case 9:name="Singapore Dollar";
+            break;
+            case 10:name=" Ringgit";
+            break;
+            case 11:name="Dirham";
+            break;
+            case 12:name="Sri Lankan Rupee";
+            break;
+            case 13:name="Riyal";
+            break;
+            case 14:name="Dinar";
+            break;
+            case 15:name="Australian Dollar";
+            break;
+            case 16:name="Russian Rouble";
+            break;
+            case 17:name="Yuan";
+            break;
+            case 18:name="Hong Kong Dollar";
+            break;
+            case 19:name="Taiwan Dollar";
+            break;
+            case 20:name="South Korean Won";
+            break;
+            case 21:name="Brazilian Real";
+            break;
+            case 22:name="Argentine Peso";
+            break;
+            case 23:name="Thai Baht";
+            break;
+            case 24:name="Indonesain Rupiah";
+            break;
+            case 25:name="Turkish Lira";
+            break;
+            default:
+            System.out.println("INVALID INPUT!");
+            name="invalid";
+        }
+        return name;
+    }
+    private double conv1(int a)
+    {
+        double conv=0;
+        switch(a)
+        {
+            case 2:conv=65.47;
+            break;
+            case 3:conv=76.33;
+            break;
+            case 4:conv=0.58;
+            break;
+            case 5:conv=85.75;
+            break;
+            case 6:conv=65.63;
+            break;
+            case 7:conv=51.41;
+            break;
+            case 8:conv=4.51;
+            break;
+            case 9:conv=48.05;
+            break;
+            case 10:conv=15.63;
+            break;
+            case 11:conv=17.82;
+            break;
+            case 12:conv=0.43;
+            break;
+            case 13:conv=17.31;
+            break;
+            case 14:conv=216.31;
+            break;
+            case 15:conv=49.84;
+            break;
+            case 16:conv=1.12;
+            break;
+            case 17:conv=10.30;
+            break;
+            case 18:conv=8.27;
+            break;
+            case 19:conv=2.21;
+            break;
+            case 20:conv=0.061;
+            break;
+            case 21:conv=19.27;
+            break;
+            case 22:conv=3.22;
+            break;
+            case 23:conv=2.08;
+            break;
+            case 24:conv=0.0047;
+            break;
+            case 25:conv=16.04;
+            break;
+        }
+        return conv;
+    }
+    
+    private double conv2(int a)
+    {
+        double conv=0;
+        switch(a)
+        {
+            case 2:conv=0.015;
+            break;
+            case 3:conv=0.013;
+            break;
+            case 4:conv=1.74;
+            break;
+            case 5:conv=0.012;
+            break;
+            case 6:conv=0.015;
+            break;
+            case 7:conv=0.019;
+            break;
+            case 8:conv=0.22;
+            break;
+            case 9:conv=0.021;
+            break;
+            case 10:conv=0.064;
+            break;
+            case 11:conv=0.056;
+            break;
+            case 12:conv=2.35;
+            break;
+            case 13:conv=0.058;
+            break;
+            case 14:conv=0.0046;
+            break;
+            case 15:conv=0.020;
+            break;
+            case 16:conv=0.90;
+            break;
+            case 17:conv=0.097;
+            break;
+            case 18:conv=0.12;
+            break;
+            case 19:conv=0.45;
+            break;
+            case 20:conv=16.49;
+            break;
+            case 21:conv=0.052;
+            break;
+            case 22:conv=0.31;
+            break;
+            case 23:conv=0.48;
+            break;
+            case 24:conv=212.20;
+            break;
+            case 25:conv=0.062;
+            break;
+        }
+        return conv;
+    }
+    
+}
