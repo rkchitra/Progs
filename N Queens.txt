@@ -1,3 +1,5 @@
+//Solution to the N Queens Problem.
+
 import java.util.*;
 class NQueens
 {
