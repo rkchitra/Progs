@@ -1,3 +1,5 @@
+/*This program accepts an input N(of type int) from the user and prints a N*N matrix in a spiral fashion from N*N to 1, with 1 being the inner most element of the matrix.*/
+
 import java.util.*;
 class Spiral_Matrix
 {
