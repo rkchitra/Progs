@@ -1,0 +1,73 @@
+
+/*0/1 Knapsack problem using Dynamic Programming */
+
+import java.util.*;
+class Knapsack
+{
+    void main()
+    {
+        int knap[][]=new int[10][10],w[]=new int[10],p[]=new int[10],n,c,maxp=0,ob[]=new int[10],count=0;
+        System.out.print("Input number of objects: ");
+        Scanner obj=new Scanner(System.in);
+        n=obj.nextInt();
+        System.out.print("Input capacity: ");
+        c=obj.nextInt();
+        System.out.print("Input weights: ");
+        for(int i=1;i<=n;i++)
+        w[i]=obj.nextInt();
+        System.out.print("Input profits: ");
+        for(int i=1;i<=n;i++)
+        p[i]=obj.nextInt();
+        for(int i=0;i<=n;i++)
+        knap[0][i]=0;
+        for(int i=0;i<=c;i++)
+        knap[i][0]=0;
+        compute(knap,w,p,n,c);
+        System.out.println("Knapsack Table: ");
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=c;j++)
+            System.out.print(knap[i][j]+" ");
+            System.out.println();
+        }
+        maxp=knap[n][c];
+        System.out.println("Maximum Profit: "+maxp);
+        System.out.println("Objects from which max profit is obtained: ");
+        int i=n,j=c;
+        while(i>0 && j>0)
+        {
+            if(knap[i][j]==knap[i-1][j])
+            i--;
+            else
+            {
+                count++;
+                ob[count]=i;
+                i--;
+            }
+            
+        }
+        for(i=count;i>0;i--)
+        System.out.print(ob[i]+" ");
+    }
+    void compute(int knap[][],int w[],int p[],int n,int c)
+    {
+        int i,j,temp;
+        for(i=1;i<=n;i++)
+        {
+            for(j=1;j<=c;j++)
+            {
+                if(w[i]>j)
+                knap[i][j]=knap[i-1][j];
+                else
+                {
+                    temp=p[i]+knap[i-1][(j-w[i])];
+                    knap[i][j]=max(knap[i-1][j],temp);
+                }
+            }
+        }
+    }
+    int max(int a,int b)
+    {
+        return a>b ? a:b;
+    }
+}
