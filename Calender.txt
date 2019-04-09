@@ -1,0 +1,134 @@
+import java.util.*;
+class Calender
+{
+    void main()
+    {
+        System.out.print("Year: ");
+        Scanner object=new Scanner(System.in);
+        int year=object.nextInt();
+        System.out.print("Month: ");
+        Scanner obj=new Scanner(System.in);
+        String m=obj.next();
+        System.out.print("1st day of the month: ");
+        String day=obj.next();
+        int month=Month(m),days=0;
+        switch(month)
+        {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+            days=31;
+            break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+            days=30;
+            break;
+        }
+        if(month==2)
+        {
+            if(year%400==0 || year%4==0)
+            days=29;
+            else
+            days=28;
+        }
+        //System.out.println("\nMONTH: "+month+" DAYS: "+days+" YEAR: "+year);
+        int fd=Day(day);
+        System.out.println("\f\t\t\t\t------------------------------------------------------");
+        System.out.println("\n\t\t\t\t\t\t       "+m.toUpperCase()+" "+year);
+        System.out.println("\n\t\t\t\t------------------------------------------------------");
+        System.out.println("\t\t\t\tSUN\tMON\tTUE\tWED\tTHU\tFRI\tSAT");
+        System.out.println("\n\t\t\t\t------------------------------------------------------");
+        printf(year,month,days,fd);
+    }
+    private int Month(String month)
+    {
+        int m=0;
+        if(month.equalsIgnoreCase("January"))
+        m=1;
+        else if(month.equalsIgnoreCase("February"))
+        m=2;
+        else if(month.equalsIgnoreCase("March"))
+        m=3;
+        else if(month.equalsIgnoreCase("April"))
+        m=4;
+        else if(month.equalsIgnoreCase("May"))
+        m=5;
+        else if(month.equalsIgnoreCase("June"))
+        m=6;
+        else if(month.equalsIgnoreCase("July"))
+        m=7;
+        else if(month.equalsIgnoreCase("August"))
+        m=8;
+        else if(month.equalsIgnoreCase("September"))
+        m=9;
+        else if(month.equalsIgnoreCase("October"))
+        m=10;
+        else if(month.equalsIgnoreCase("November"))
+        m=11;
+        else if(month.equalsIgnoreCase("December"))
+        m=12;
+        return m;
+    }
+    private int Day(String day)
+    {
+        int fd=0;
+        if(day.equalsIgnoreCase("Sunday"))
+        fd=1;
+        else if(day.equalsIgnoreCase("Monday"))
+        fd=2;
+        else if(day.equalsIgnoreCase("Tuesday"))
+        fd=3;
+        else if(day.equalsIgnoreCase("Wednesday"))
+        fd=4;
+        else if(day.equalsIgnoreCase("Thursday"))
+        fd=5;
+        else if(day.equalsIgnoreCase("Friday"))
+        fd=6;
+        else if(day.equalsIgnoreCase("Saturday"))
+        fd=7;
+        return fd;
+        
+    }
+    private void printf(int year,int month,int days,int fd)
+    {
+        int printer=1,i=1;
+        System.out.print("\t\t\t\t");
+        for(i=1;i<fd;i++)
+        System.out.print("\t");
+        for(;i<=7;i++)
+        {
+            if(printer>9)
+            System.out.print(printer+"\t");
+            else 
+            System.out.print(" "+printer+"\t");
+            printer++;
+        }
+        System.out.print("\n");
+        while(printer<=days)
+        {
+            System.out.println("\n\t\t\t\t------------------------------------------------------");
+            System.out.print("\t\t\t\t");
+            i=1;
+            for(i=1;i<=7;i++)
+        {
+            /*if(printer>9)
+            System.out.print(printer+"\t");
+            else */
+            if(printer<=days)
+            System.out.print(" "+printer+"\t");
+            else
+            break;
+            printer++;
+        }
+        System.out.print("\n");
+        }
+         System.out.println("\n\t\t\t\t------------------------------------------------------");
+        
+    }
+    }
