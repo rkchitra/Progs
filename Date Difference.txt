@@ -1,0 +1,153 @@
+import java.util.*;
+class Date_Difference
+{
+    Date_Difference()
+    {
+        main();
+    }
+    void main()
+    {
+        Scanner obj=new Scanner(System.in);
+        System.out.print("Enter the date in dd/mm/yyyy format\nDate1:");
+        String date1=obj.next();
+        date1=date1.trim();
+        int d1=Integer.parseInt(date1.substring(0,2));
+        int m1=Integer.parseInt(date1.substring(3,5));
+        int y1=Integer.parseInt(date1.substring(6));
+        if(date_validity(d1,m1,y1)==true)
+        {
+        System.out.print("Date2: ");
+        String date2=obj.next();
+        date2=date2.trim();
+        //the following 6 lines of code convert the given dates in string to a convinient form of int.
+        
+        int d2=Integer.parseInt(date2.substring(0,2));
+        int m2=Integer.parseInt(date2.substring(3,5));
+        int y2=Integer.parseInt(date2.substring(6));
+        if(date_validity(d2,m2,y2)==true)
+        {
+        int date_diff=0;
+        if(y1!=y2)//if the years are different,computes date difference accordingly.
+        {
+            if(y1>y2)
+            {
+                int temp=d1;
+                d1=d2;
+                d2=temp;
+                temp=m1;
+                m1=m2;
+                m2=temp;
+                temp=y1;
+                y1=y2;
+                y2=temp;
+            }
+            date_diff+=days_count(m1,y1)-d1;
+            for(int i=(m1+1);i<=12;i++)
+            date_diff+=days_count(i,y1);
+            for(int j=(y1+1);j<y2;j++)
+            {
+                if(j%400==0 || j%4==0)
+                date_diff+=366;
+                else
+                date_diff+=365;
+            }
+            for(int k=1;k<m2;k++)
+            date_diff+=days_count(k,y2);
+            date_diff+=d2;
+        }
+        else if(y1==y2 && m1!=m2)//if the years are same and months different,computes date difference accordingly.
+        {
+            if(m1>m2)
+            {
+                int temp=d1;
+                d1=d2;
+                d2=temp;
+                temp=m1;
+                m1=m2;
+                m2=temp;
+            }
+            date_diff+=days_count(m1,y1)-d1;
+            for(int i=(m1+1);i<m2;i++)
+                date_diff+=days_count(i,y1);
+            date_diff+=d2;
+        }
+        else if(y1==y2 && m1==m2)
+            date_diff=(int)Math.max(d1,d2)-Math.min(d1,d2);
+        System.out.println("No. of days: "+date_diff+" days");
+    }
+    else
+    {
+    System.out.println("\fINVALID INPUT!");
+    main();
+    }
+}
+else
+{
+System.out.println("\fINVALID INPUT!");
+main();
+}
+    }
+
+    private boolean date_validity(int d,int m,int y)
+    {
+        boolean check=true;
+        if(d<1 || d>31 || m<1 || m>12)
+        check=false;
+        if(m==2)
+        {
+            if(y%400==0 || y%4==0)
+            {
+            if(d>29)
+            check=false;
+            }
+            else if(d>28)
+            check=false;
+            
+        }
+        else
+        switch(m)
+            {
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                if(d>30)
+                check=false;
+            }
+        
+        return check;
+    }
+
+    private int days_count(int m,int y)//No. of days in the respective month
+    {
+        int days=0;
+        if(m==2)
+        {
+            if(y%400==0 || y%4==0)
+                days=29;
+            else
+                days=28;
+        }
+        else
+            switch(m)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                days=31;
+                break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                days=30;
+                break;
+            }
+        return days;
+
+    }
+}
