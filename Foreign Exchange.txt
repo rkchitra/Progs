@@ -1,3 +1,6 @@
+/*This program accepts 3 inputs- Currency1, amount in Currency1 and Currency2. The program computes and converts the given amount
+to Currency2 and displays the result. Note:Both currencies are selected by the user and not fixed.*/
+
 import java.util.*;
 class Foreign_Exchange
 {
