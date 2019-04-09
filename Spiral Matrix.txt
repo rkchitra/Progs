@@ -1,0 +1,79 @@
+import java.util.*;
+class Spiral_Matrix
+{
+    int n,temp,l1=0,num,arr[][];
+    void main()
+    {
+        int l1=0;
+        System.out.print("Input n:");
+        Scanner obj=new Scanner(System.in);
+        n=obj.nextInt();
+        temp=n;
+        arr=new int[n][n];
+        num=n*n;
+        while(num>0)
+        {
+        for(int j=l1;j<n;j++)
+        arr[l1][j]=num--;
+        for(int i=l1+1;i<n;i++)
+        arr[i][n-1]=num--;
+        for(int j=n-2;j>=l1;j--)
+        arr[n-1][j]=num--;
+        for(int i=n-2;i>l1;i--)
+        arr[i][l1]=num--;
+        n--;
+        l1++;
+        }
+        /*for(int i=0;i<temp;i++)
+        {
+            for(int j=0;j<temp;j++)
+            if(arr[i][j]>99)
+            System.out.print(arr[i][j]+" ");
+            else if(arr[i][j]>9)
+            System.out.print(arr[i][j]+"  ");
+            else
+            System.out.print(arr[i][j]+"   ");
+            System.out.println();
+        }*/
+        display(arr,temp,temp);
+}
+ private void display(int a[][],int m,int n)
+    {
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                for(int k=format2(a[i][j]);k<format1(a,m,n);k++)
+                System.out.print(" ");
+                System.out.print(a[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    private int format1(int a[][],int m,int n)
+    {
+        int biggest=a[0][0],digits=0;
+        for(int i=0;i<m;i++)
+            for(int j=0;j<n;j++)
+
+                if(a[i][j]>biggest)
+                    biggest=a[i][j];
+        while(biggest>0)
+        {
+            biggest/=10;
+            digits++;
+        }
+        return digits;
+    }
+    private int format2(int a)
+    {
+        int digits=0;
+        while(a>0)
+        {
+            a/=10;
+            digits++;
+        }
+        return digits;
+    }
+}
