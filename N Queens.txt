@@ -34,7 +34,7 @@ class NQueens
      if(k==1)
      return 1;
      
-     //Checks columns
+     //Checks columns && diagnols
      for(int j=1;j<k;j++)
      {
          d1=j;
