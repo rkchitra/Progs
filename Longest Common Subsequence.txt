@@ -1,0 +1,74 @@
+import java.util.*;
+import java.io.*;
+class LongestCommonSubsequence
+{
+    int max(int a,int b)
+    {
+        if(a>b)
+        return a;
+        else return b;
+    }
+    void main()
+   {
+       int m,n,sub[][]=new int[15][15],i,j;
+       String X,Y,s=" ",rev=" ";
+       System.out.print("Input X and Y: \n");
+       Scanner obj=new Scanner(System.in);
+       X=obj.nextLine();
+       Y=obj.nextLine();
+       m=X.length();
+       n=Y.length();
+       System.out.println("m= "+m+"\tn= "+n);
+       for(i=0;i<=n;i++)
+       sub[0][i]=0;
+       for(i=0;i<=m;i++)
+       sub[i][0]=0;
+       for(i=1;i<=m;i++)
+       {
+           char temp=X.charAt(i-1);
+           for(j=1;j<=n;j++)
+           if(temp==Y.charAt(j-1))
+           {
+               sub[i][j]=sub[i-1][j-1]+1;
+            }
+            else
+            sub[i][j]=max(sub[i-1][j],sub[i][j-1]);
+           
+        }
+        
+        //Finding longest subsequence
+        i=m;
+        j=n;
+        while(i>0 && j>0)
+        {
+            if(sub[i][j]==sub[i-1][j])
+            i--;
+            else if(sub[i][j]==sub[i][j-1])
+            j--;
+            else
+            {
+                s+=X.charAt(i-1);
+                i--;
+                j--;
+            }
+        }
+        s=s.trim();
+        int temp=s.length()-1;
+        System.out.print("  Y:\t0\t");
+        for(i=0;i<n;i++)
+        System.out.print(Y.charAt(i)+"\t");
+        X="0"+X;
+        for(i=0;i<s.length();i++)
+        rev+=s.charAt(temp--);
+        System.out.println("\nX");
+        
+       for(i=0;i<=m;i++)
+       {
+           System.out.print(X.charAt(i)+"  \t");
+           for(j=0;j<=n;j++)
+           System.out.print(sub[i][j]+"\t");
+           System.out.println();
+        }
+        System.out.println("Longest Common Subsequence: "+rev);
+    }
+}
