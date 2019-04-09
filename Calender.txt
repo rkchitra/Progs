@@ -1,4 +1,4 @@
-/*This program accepts the year, month and first day of the month as inputs and displays the calender of that month(Taking leap year into account) */
+/*This program accepts the year(int),month(string) and first day of the month(string) as inputs and prints the calender for that    month (taking leap year into account).*/
 
 import java.util.*;
 class Calender
@@ -11,9 +11,15 @@ class Calender
         System.out.print("Month: ");
         Scanner obj=new Scanner(System.in);
         String m=obj.next();
+        int month=Month(m),days=0;
+        if(month==-1)
+        {
+            System.out.print("Invalid Month\n");
+            return;
+        }
         System.out.print("1st day of the month: ");
         String day=obj.next();
-        int month=Month(m),days=0;
+        
         switch(month)
         {
             case 1:
@@ -41,6 +47,11 @@ class Calender
         }
         //System.out.println("\nMONTH: "+month+" DAYS: "+days+" YEAR: "+year);
         int fd=Day(day);
+        if(fd==-1)
+        {
+            System.out.print("Invalid Day\n");
+            return;
+        }
         System.out.println("\f\t\t\t\t------------------------------------------------------");
         System.out.println("\n\t\t\t\t\t\t       "+m.toUpperCase()+" "+year);
         System.out.println("\n\t\t\t\t------------------------------------------------------");
@@ -50,7 +61,7 @@ class Calender
     }
     private int Month(String month)
     {
-        int m=0;
+        int m=-1;
         if(month.equalsIgnoreCase("January"))
         m=1;
         else if(month.equalsIgnoreCase("February"))
@@ -79,7 +90,7 @@ class Calender
     }
     private int Day(String day)
     {
-        int fd=0;
+        int fd=-1;
         if(day.equalsIgnoreCase("Sunday"))
         fd=1;
         else if(day.equalsIgnoreCase("Monday"))
